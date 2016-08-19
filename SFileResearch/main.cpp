@@ -52,7 +52,6 @@ void organizeTopLists(form &sFF)
 int main()
 {
 	char file[] = "D:\\Valence Gaming\\Virtual Conductance\\SoundFonts\\TOH\\tohShort.sf2";
-	printf("testing\n");
 	ifstream ifn = ifstream(file, std::iostream::binary | ios::in);
 	form sFF;
 	list * iList, * sdtaList, * pdList;
@@ -74,9 +73,11 @@ int main()
 			
 		if (getPDTAListSubChunks(pdList, pList)) {
 			sfSample * current = 0x0;
-			for (int i = 0; i < pList.counts[8]; i++) {
-				current = (sfSample*) (&(pList.members[8]->data) + (i * 46));
-				printf("Sample Header Name: %.*s\n", 20, current->achSampleName);
+			for (DWORD i = 0; i < pList.counts[8]; i++) {
+				current = (sfSample*) ((DWORD)&(pList.members[8]->data) + (i * 46));
+				printf("\tSample Header Name: %.*s\n", 20, current->achSampleName);
+				printf("\tRecorded Frequency: (%d)hz\n", current->dwSampleRate);
+				printf("%d")
 			}
 		}
 		else 

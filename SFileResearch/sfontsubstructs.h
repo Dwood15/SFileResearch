@@ -52,33 +52,26 @@ typedef struct
 	DWORD dwStartloop;
 	DWORD dwEndloop;
 	DWORD dwSampleRate;
-	BYTE byOriginalKey;
+	BYTE byOriginalKey; //The original key.
 	CHAR chCorrection;
 	WORD wSampleLink;
 	SFSampleLink sfSampleType;
 } sfSample;
-#pragma pack(pop)
 
-struct sfInstBag
-{
-	WORD wInstGenNdx;
-	WORD wInstModNdx;
-};
-
-struct sfInstModList
-{
-	SFModulator sfModSrcOper;
-	SFGenerator sfModDestOper;
-	SHORT modAmount;
-	SFModulator sfModAmtSrcOper;
-	SFTransform sfModTransOper;
-};
-
-struct sfInstGenList
+typedef struct
 {
 	SFGenerator sfGenOper;
 	genAmountType genAmount;
-};
+} sfInstGenList;
+
+typedef struct sfInstBag
+{
+	WORD wInstGenNdx;
+	WORD wInstModNdx;
+} sfInstBag;
+#pragma pack(pop)
+
+
 
 DWORD getSizeByIndex(DWORD idx);
 DWORD getChunkData(chunk * (&chnk), chunk * (&nextChunk), DWORD size);
